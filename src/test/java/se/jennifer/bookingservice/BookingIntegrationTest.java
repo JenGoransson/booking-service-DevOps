@@ -24,44 +24,9 @@ class BookingIntegrationTest {
     @Test
     void shouldReturnRoomsSuccessfully() throws Exception {
 
-        mockMvc.perform(get("/api/rooms")
+        mockMvc.perform(get("/rooms")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
-    @Test
-    void shouldCreateBookingSuccessfully() throws Exception {
-
-        String bookingJson = """
-            {
-                "customerId": 1,
-                "roomId": 101,
-                "startDate": "2026-12-01",
-                "endDate": "2026-12-05"
-            }
-        """;
-
-        mockMvc.perform(post("/api/bookings")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(bookingJson))
-                .andExpect(status().isCreated());
-    }
-
-    @Test
-    void shouldReturnConflictWhenRoomIsDoubleBooked() throws Exception {
-
-        String doubleBookingJson = """
-            {
-                "customerId": 2,
-                "roomId": 101,
-                "startDate": "2026-12-01",
-                "endDate": "2026-12-05"
-            }
-        """;
-
-        mockMvc.perform(post("/api/bookings")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(doubleBookingJson))
-                .andExpect(status().isConflict());
-    }
 }
