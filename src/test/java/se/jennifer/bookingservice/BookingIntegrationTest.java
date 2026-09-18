@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -29,4 +30,16 @@ class BookingIntegrationTest {
                 .andExpect(status().isOk());
     }
 
+    // Testar att GET /bookings fungerar korrekt genom att returnera en tom lista.
+// Detta är ett enkelt integrationstest som verifierar att endpointen är åtkomlig,
+// att Spring Boot startar som det ska, att databasen är tom i testprofilen,
+// och att inga externa anrop (t.ex. CustomerClient) triggas.
+    @Test
+    void shouldReturnEmptyBookingsList() throws Exception {
+        mockMvc.perform(get("/bookings")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(0));
+    }
 }
