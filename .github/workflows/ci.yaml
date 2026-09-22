@@ -45,5 +45,5 @@ jobs:
 
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/bookingdb
-          SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: root
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
