@@ -39,8 +39,7 @@ class BookingIntegrationTest {
         Room room = new Room("101", RoomType.SINGLE, false, 1, 800);
         roomRepository.save(room);
 
-        mockMvc.perform(get("/rooms"))
-                .andExpect(status().isOk());
+        mockMvc.perform(get("/roomss
     }
 
     @Test
