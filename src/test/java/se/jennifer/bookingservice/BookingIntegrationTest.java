@@ -24,7 +24,7 @@ class BookingIntegrationTest {
     @Test
     void shouldReturnRoomsSuccessfully() throws Exception {
 
-        mockMvc.perform(get("/roo")
+        mockMvc.perform(get("/rooms")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
