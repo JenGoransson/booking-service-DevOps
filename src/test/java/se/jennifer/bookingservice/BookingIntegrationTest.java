@@ -19,12 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class BookingIntegrationTest {
 
     @Autowired
-    private MockMvc mockMvcd;
+    private MockMvc mockMvc;
 
     @Test
     void shouldReturnRoomsSuccessfully() throws Exception {
 
-        mockMvc.perform(get("/rooms")
+        mockMvc.perform(get("/room")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
